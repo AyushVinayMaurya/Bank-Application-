@@ -178,15 +178,11 @@
             if (user) // (email === storedEmail && password ===     storedPassword)
             {
                 localStorage.setItem('currentuser', JSON.stringify(user));
-                alert("Login SuccesfullY");
-                let option = confirm("Do you want to start then exam click ok..");
-                if (option) {
-                    window.location.href = "examapp.html";
-                }
-                window.location.href = "bank.html";
+                alert("Login Successful");
+                window.location.href = "examapp.html";
             }
             else {
-                alert("login failed....Please Try again later")
+                alert("Login failed. Please try again later.")
             }
 
         });
