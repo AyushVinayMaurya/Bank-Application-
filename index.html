@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Home</title>
+    <style>
+        :root {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1f2937;
+            background: #eef2ff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 1.5rem;
+            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.18), transparent 35%),
+                linear-gradient(180deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+
+        center {
+            width: 100%;
+        }
+
+        h1 {
+            margin: 0 0 1.5rem;
+            font-size: clamp(2rem, 3vw, 3rem);
+            color: #0acaf0;
+            letter-spacing: 0.02em;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.9rem 1.4rem;
+            border-radius: 999px;
+            color: #334155;
+            text-decoration: none;
+            font-weight: 700;
+            background: rgba(99, 102, 241, 0.12);
+            transition: background-color 0.18s ease, transform 0.18s ease;
+        }
+
+        nav a:hover {
+            background: rgba(99, 102, 241, 0.22);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 520px) {
+            nav a {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Welcome to my Bank</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="signin.html">Sign-in</a>
+            <a href="singup.html">sign-up</a>
+
+        </nav>
+        <br>
+
+
+    </center>
+</body>
+
+</html>

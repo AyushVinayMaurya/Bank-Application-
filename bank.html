@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank</title>
+    <style>
+        :root {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #eef2ff;
+            color: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.22), transparent 35%),
+                linear-gradient(180deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+
+        center {
+            width: 100%;
+        }
+
+        form {
+            width: min(420px, 100%);
+            padding: 2rem;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(99, 102, 241, 0.14);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 1rem;
+            font-size: clamp(2rem, 2.5vw, 2.5rem);
+            letter-spacing: -0.04em;
+            color: #4338ca;
+        }
+
+        h3#uname {
+            margin: 0 0 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        #datetime {
+            display: block;
+            margin-bottom: 1rem;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        input[type='number'] {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            font-size: 1rem;
+            color: #0f172a;
+            outline: none;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease;
+            margin-bottom: 1rem;
+        }
+
+        input[type='number']:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+        }
+
+        h3#output {
+            min-height: 2.5rem;
+            margin: 0 0 1.5rem;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        input[type='button'] {
+            width: calc(50% - 0.5rem);
+            margin: 0.25rem;
+            padding: 0.95rem 1rem;
+            border: none;
+            border-radius: 14px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+        }
+
+        input[type='button']:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 24px rgba(79, 70, 229, 0.12);
+        }
+
+        input[value='Credit'] {
+            background: #4338ca;
+            color: white;
+        }
+
+        input[value='Debit'] {
+            background: #0f172a;
+            color: white;
+        }
+
+        input[value='Balance'] {
+            background: #e0e7ff;
+            color: #1f2937;
+        }
+
+        input[value='clear'] {
+            background: #f8fafc;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+        }
+
+        .logout-link {
+            margin: 0.75rem 0 1rem;
+            width: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.85rem 1.25rem;
+            border: 1px solid rgba(99, 102, 241, 0.22);
+            border-radius: 16px;
+            background: #ffffff;
+            color: #4338ca;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .logout-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.12);
+        }
+
+        @media (max-width: 520px) {
+            input[type='button'] {
+                width: 100%;
+            }
+
+            a button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <form>
+            <h1>Bank</h1>
+            <h3 id="uname"></h3>
+            <label>Enter Amount</label>
+            <i id="datetime"></i>
+
+            <br>
+            <a class="logout-link" href="index.html">Logout</a>
+            <input type="number" id="amount">
+            <br>
+            <h3 id="output"></h3>
+            <input type="button" value="Credit" onclick="Credit()">
+            <input type="button" value="Debit" onclick="Debit()">
+            <input type="button" value="Balance" onclick="showBalance()">
+            <input type="button" value="clear" onclick="clear1()">
+        </form>
+
+    </center>
+</body>
+<script>
+    let currentuser = JSON.parse(localStorage.getItem("currentuser"));
+    console.log(currentuser);
+    document.getElementById("uname").innerHTML = "Welcome " + currentuser.uname;
+
+    document.getElementById("datetime").innerText = `Login at ${new Date().toLocaleDateString()}`;
+
+    let balance = 0;
+    function clear1() {
+        document.getElementById("amount").value = "";
+        document.getElementById("output").innerHTML = "";
+    }
+
+    function showBalance() {
+        document.getElementById("output").innerHTML = "Current balance is:" + balance;
+    }
+
+    function Credit() {
+        let amount = Number(document.getElementById("amount").value);
+        console.log(amount);
+        if (amount > 0) {
+            balance = balance + amount;
+            document.getElementById("output").innerHTML = "Amount credit successfully"
+        }
+        else {
+            alert("Entered Amount is incorrect.... Try again");
+        }
+    }
+
+    function Debit() {
+        let debit = Number(document.getElementById("amount").value);
+        console.log(debit);
+        if (debit > 0) {
+            balance = balance - debit;
+            document.getElementById("output").innerHTML = "Amount Debited successfully";
+        }
+        else {
+            alert("Entered Amount is incorrect... Try again")
+        }
+
+    }
+</script>
+
+</html>
