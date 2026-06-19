@@ -179,6 +179,10 @@
             {
                 localStorage.setItem('currentuser', JSON.stringify(user));
                 alert("Login SuccesfullY");
+                let option = confirm("Do you want to start then exam click ok..");
+                if (option) {
+                    window.location.href = "examapp.html";
+                }
                 window.location.href = "bank.html";
             }
             else {
