@@ -41,10 +41,70 @@
             text-align: center;
         }
     </style>
-    <h1>Welcome to Exam App </h1>
-    <nav>
-        <a href="index.html"><button>Logout</button></a>
-    </nav>
+     <center>
+        <h1>Welcome to Exam App </h1>
+        <nav>
+            <a href="index.html"><button class="logout-link">Logout</button></a>
+        </nav>
+        <hr>
+    </center>
+
+    <form id="examform">
+        <label>Q.1 HTML is the Case Senstive language</label>
+        <br><br>
+        <input type="radio" id="Q1true" name="Q1" value="true">
+        <label for="Q1true">True</label>
+        <input type="radio" name="Q1" id="Q1false" value="false">
+        <label for="Q1false">False</label>
+
+        <br>
+        <br>
+
+        <label>Q.2 Javascript is the Object based language</label>
+        <br><br>
+        <input type="radio" id="Q2true" name="Q2" value="true">
+        <label for="Q2true">True</label>
+        <input type="radio" name="Q2" id="Q1false" value="false">
+        <label for="Q2false">False</label>
+
+        <br><br>
+
+        <input type="submit" value="submit">
+        <input type="reset" value="cancel">
+
+        <h1 id="result"></h1>
+    </form>
+    <script>
+        document.getElementById("examform").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let score = 0;
+            let Q1_ans = document.getElementById("Q1false").checked;
+            let Q2_ans = document.getElementById("Q2true").checked;
+
+            if (Q1_ans) {
+                score = score + 1;
+
+            }
+            if (Q2_ans) {
+                score = score + 1;
+            }
+
+            if (!document.querySelector("input[name='Q1']:checked")) {
+                alert("please select the option...")
+
+
+            }
+
+            if (!document.querySelector("input[name='Q2']:checked")) {
+                alert("please select the option...")
+            }
+
+            document.getElementById("result").innerHTML = "Your score:" + score
+
+
+        })
+    </script>
+
 
 </body>
 
